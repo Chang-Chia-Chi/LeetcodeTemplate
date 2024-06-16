@@ -50,7 +50,6 @@ class SegmentTreeNode:
         
         if self.left:
             result = self.left.queryRange(start, end) + self.right.queryRange(start, end)
-            self.__updateInfoParent()
             return result
         
         return self.info # Modify logic here
