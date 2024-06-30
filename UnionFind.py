@@ -29,17 +29,18 @@ class DisjointSet:
         return (self.nodesMap[val], isNew)
 
 
-    def find(self, node):
+    def find(self, val):
+        node, _ = self.fetchNode(val)
         if node.parent is node:
             return node
     
-        node.parent = self.find(node.parent)
+        node.parent = self.find(node.parent.val)
         return node.parent
 
 
-    def union(self, n1, n2):
-        p1 = self.find(n1)
-        p2 = self.find(n2)
-        if p1 != p2:
+    def union(self, u, v):
+        up = self.find(u)
+        vp = self.find(v)
+        if up is not vp:
             self.sets -= 1
-            p2.merge(p1)
+            vp.merge(up)
